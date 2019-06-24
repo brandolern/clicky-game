@@ -2,11 +2,7 @@ import React from "react";
 import Wrapper from "./components/wrapper";
 
 function App() {
-	return (
-		<Wrapper>
-			<h1>Hello!</h1>
-		</Wrapper>
-	);
+	return <Header />;
 }
 
 export default App;
