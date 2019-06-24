@@ -1,46 +1,45 @@
-import react from "react";
+import React, { Component } from "react";
 import { Container, Row, Col } from "../Grid";
 import Image from "../Image";
+
 class GameBoard extends Component {
 	state = {
-		imageArr: this.state.imageArr
+		imageSrcArr: [
+			"https://www.pexels.com/photo/close-up-photography-of-cat-1183434/",
+			"1",
+			"1",
+			"1",
+			"1",
+			"1",
+			"1",
+			"1",
+			"1",
+			"1",
+			"1",
+			"1"
+		],
+		imageList: [],
+		clickedArr: []
 	};
-	imageArr = ["images"];
-	correctArr = [];
-
 	componentDidMount() {
-		imageList = this.displayImages();
+		this.createImageList(this.state.imageSrcArr);
 	}
-	displayImages(imageArr) {
-		return imageArr.map(img => {
-			<Image src={img} id={this.index} key={this.index} />;
+	createImageList(arr) {
+		this.setState(arr => {
+			imageList: () => {};
 		});
 	}
-
+	//  this.state.imageList.push(
+	//      <Image src={img} id={img.index} key={img.index} alt="alt" />
+	//  );
 	render() {
-		<Container fluid>
-			<Row>
-				{imageList.filter(img => {
-					if (img.index < 4) {
-						return <Col size="sm-2">{img}</Col>;
-					}
-				})}
-			</Row>
-			<Row>
-				{imageList.filter(img => {
-					if (img.index > 3 && img.index < 8) {
-						return <Col size="sm-2">{img}</Col>;
-					}
-				})}
-			</Row>
-			<Row>
-				{imageList.filter(img => {
-					if (img.index > 7) {
-						return <Col size="sm-2">{img}</Col>;
-					}
-				})}
-			</Row>
-		</Container>;
+		return (
+			<Container fluid>
+				<Row />
+				<Row />
+				<Row />
+			</Container>
+		);
 	}
 }
 export default GameBoard;

@@ -1,8 +1,14 @@
 import React from "react";
-import Wrapper from "./components/wrapper";
+import Header from "./components/Header";
+import GameBoard from "./components/GameBoard";
 
 function App() {
-	return <Header />;
+	return (
+		<>
+			<Header />
+			<GameBoard />
+		</>
+	);
 }
 
 export default App;
