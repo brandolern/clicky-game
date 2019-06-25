@@ -1,12 +1,18 @@
-.imgContainer {
-	border: 5px solid #fff;
-	box-shadow: #00000029 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-}
-.imgContainer:hover {
+.img:hover {
 	cursor: pointer;
 	opacity: 0.8;
 }
 .img {
-	width: 175px;
-	height: 250px;
+	height: 100%;
+	width: 100%;
+	box-shadow: #00000029 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.imgContainer {
+	margin-top: 15px;
+}
+.normalBorder {
+	border: 5px solid #fff;
+}
+.incorrectBorder {
+	border: 5px solid #dc3545;
 }

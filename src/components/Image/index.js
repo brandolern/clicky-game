@@ -1,6 +1,19 @@
 import React from "react";
 import "./style.css";
 function Image(props) {
+	let border;
+
+	switch (props.isCorrect) {
+		case true:
+			border = "normalBorder";
+			break;
+		case false:
+			border = "incorrectBorder";
+			break;
+		default:
+			border = "normalBorder";
+	}
+
 	return (
 		<div className="imgContainer">
 			<img
@@ -9,7 +22,7 @@ function Image(props) {
 				key={props.id}
 				alt={props.alt}
 				onClick={() => props.handleClickEvent(props.id)}
-				className="img"
+				className={`img ${border}`}
 			/>
 		</div>
 	);

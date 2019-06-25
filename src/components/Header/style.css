@@ -1,4 +1,10 @@
 .header {
+	height: 100px;
 	color: white;
 	background: #343a40;
+	width: 100%;
+	overflow: hidden;
+}
+.title {
+	margin-top: 1.5rem;
 }

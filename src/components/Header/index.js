@@ -9,13 +9,21 @@ function Header(props) {
 		<div className="header">
 			<Row>
 				<Col size="sm-4">
-					<h1 className="title">Clicky Office Game</h1>
+					<h2 className="title">Clicky Office Game</h2>
 				</Col>
 				<Col size="sm-4">
-					<Status userMessage={props.status} />
+					<Status
+						userMessage={props.status}
+						correct={props.correct}
+						topMargin="title"
+					/>
 				</Col>
 				<Col size="sm-4">
-					<Scores score={props.score} highScore={props.highScore} />
+					<Scores
+						score={props.score}
+						highScore={props.highScore}
+						topMargin="title"
+					/>
 				</Col>
 			</Row>
 		</div>

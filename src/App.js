@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import { Container, Row, Col } from "./components/Grid";
 import images from "./images.json";
 import Image from "./components/Image";
+import Footer from "./components/Footer";
 
 class App extends Component {
 	state = {
@@ -10,7 +11,9 @@ class App extends Component {
 		score: 0,
 		highScore: 0,
 		clickedIds: [],
-		status: "Click an image to play!"
+		status:
+			"Try not to click on the same image twice, click an image to begin!",
+		isCorrect: ""
 	};
 
 	shuffleImages = arr => {
@@ -38,7 +41,8 @@ class App extends Component {
 			this.setState({
 				score: 0,
 				clickedIds: [],
-				status: "Sorry you lose!"
+				status: "Sorry you lose! Try again",
+				isCorrect: false
 			});
 		} else {
 			if (this.state.score === this.state.highScore) {
@@ -50,10 +54,21 @@ class App extends Component {
 			this.setState({
 				clickedIds: clickedIds,
 				score: this.state.score + 1,
-				status: "You guessed correctly"
+				status: "You guessed correctly!",
+				isCorrect: true
 			});
 			return this.shuffleImages(this.state.images);
 		}
+	};
+
+	splitImageArray = arr => {
+		let counter = 0;
+		let splitImagesArr = [];
+		for (let i = 0; i < 3; i++) {
+			splitImagesArr.push(arr.slice(counter, counter + 4));
+			counter = counter + 4;
+		}
+		return splitImagesArr;
 	};
 
 	render() {
@@ -63,22 +78,29 @@ class App extends Component {
 					status={this.state.status}
 					score={this.state.score}
 					highScore={this.state.highScore}
+					correct={this.state.isCorrect}
 				/>
 				<Container>
-					<Row>
-						{this.state.images.map(image => (
-							<Col size="sm-2.5">
-								<Image
-									id={image.id}
-									key={image.key}
-									src={image.image}
-									alt={image.alt}
-									handleClickEvent={this.handleClickEvent}
-								/>
-							</Col>
-						))}
-					</Row>
+					{this.splitImageArray(this.state.images).map(imageArr => (
+						<Row>
+							<Col size="sm-2" />
+							{imageArr.map(image => (
+								<Col size="sm-2">
+									<Image
+										id={image.id}
+										key={image.key}
+										src={image.image}
+										alt={image.alt}
+										handleClickEvent={this.handleClickEvent}
+										isCorrect={this.state.isCorrect}
+									/>
+								</Col>
+							))}
+							<Col size="sm-2" />
+						</Row>
+					))}
 				</Container>
+				<Footer />
 			</>
 		);
 	}
