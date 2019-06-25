@@ -1,15 +1,15 @@
 import React from "react";
 
-function image(props) {
+function Image(props) {
 	return (
 		<img
 			src={props.src}
 			id={props.id}
 			key={props.id}
 			alt={props.alt}
-			onClick={props.onClick}
-			className={props.className}
+			onClick={() => props.handleClickEvent(props.id)}
+			className="image"
 		/>
 	);
 }
-export default image;
+export default Image;
