@@ -1,0 +1,11 @@
+.imgContainer {
+	margin: 10px;
+	border: 5px solid #fff;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.imgContainer:hover {
+}
+.img {
+	width: 200px;
+	height: 275px;
+}

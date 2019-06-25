@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import { Container, Row, Col } from "./components/Grid";
 import images from "./images.json";
 import Image from "./components/Image";
-import Wrapper from "./components/Wrapper";
 
 class App extends Component {
 	state = {
@@ -11,7 +10,7 @@ class App extends Component {
 		score: 0,
 		highScore: 0,
 		clickedIds: [],
-		status: ""
+		status: "Click an image to play!"
 	};
 
 	shuffleImages = arr => {
@@ -33,57 +32,55 @@ class App extends Component {
 	};
 
 	handleClickEvent = id => {
-		console.log(this.state.clickedIds);
+		const clickedIds = this.state.clickedIds;
+
+		if (clickedIds.includes(id)) {
+			this.setState({
+				score: 0,
+				clickedIds: [],
+				status: "Sorry you lose!"
+			});
+		} else {
+			if (this.state.score === this.state.highScore) {
+				this.setState({
+					highScore: this.state.score + 1
+				});
+			}
+			clickedIds.push(id);
+			this.setState({
+				clickedIds: clickedIds,
+				score: this.state.score + 1,
+				status: "You guessed correctly"
+			});
+			return this.shuffleImages(this.state.images);
+		}
 	};
-	// if(this.state.clickedArr.length === 0) {
-	// 	this.setState({
-	// 		clickedArr: this.state.clickedArr.concat([imageId]),
-	// 		score: this.state.score + 1,
-	// 		highScore: this.state.highScore + 1,
-	// 		status: ""
-	// 	});
-	// 	// console.log(this.state.highScore);
-	// 	return this.shuffleImages(this.state.images);
-	// }
-	// const filterArr = this.state.clickedArr.filter(id => {
-	// 	return id === imageId;
-	// });
-	// if (filterArr.length !== 0) {
-	// 	this.setState({
-	// 		score: 0,
-	// 		clickedArr: [],
-	// 		status: "Sorry you lose!"
-	// 	});
-	// 	// console.log(this.state.highScore);
-	// } else {
-	// 	this.setState({
-	// 		clickedArr: this.state.clickedArr.concat([imageId]),
-	// 		score: this.state.score + 1,
-	// 		highScore: this.state.highScore + 1,
-	// 		status: "That's correct"
-	// 	});
-	// 	this.shuffleImages(this.state.images);
-	// 	// console.log(this.state.highScore);
-	// }
+
+	getFirstFour = arr => {
+		return arr.slice(0, 4);
+	};
+
 	render() {
 		return (
-			<Container>
-				<Wrapper>
-					<Header
-						status={this.state.status}
-						score={this.state.score}
-						highScore={this.state.highScore}
-					/>
+			<Container className="text-center">
+				<Header
+					status={this.state.status}
+					score={this.state.score}
+					highScore={this.state.highScore}
+				/>
+				<Row>
 					{this.state.images.map(image => (
-						<Image
-							id={image.id}
-							key={image.key}
-							src={image.image}
-							alt={image.alt}
-							handleClickEvent={this.handleClickEvent}
-						/>
+						<Col size="sm-2.5" className="image">
+							<Image
+								id={image.id}
+								key={image.key}
+								src={image.image}
+								alt={image.alt}
+								handleClickEvent={this.handleClickEvent}
+							/>
+						</Col>
 					))}
-				</Wrapper>
+				</Row>
 			</Container>
 		);
 	}
