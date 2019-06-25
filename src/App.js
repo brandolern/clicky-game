@@ -56,32 +56,30 @@ class App extends Component {
 		}
 	};
 
-	getFirstFour = arr => {
-		return arr.slice(0, 4);
-	};
-
 	render() {
 		return (
-			<Container className="text-center">
+			<>
 				<Header
 					status={this.state.status}
 					score={this.state.score}
 					highScore={this.state.highScore}
 				/>
-				<Row>
-					{this.state.images.map(image => (
-						<Col size="sm-2.5" className="image">
-							<Image
-								id={image.id}
-								key={image.key}
-								src={image.image}
-								alt={image.alt}
-								handleClickEvent={this.handleClickEvent}
-							/>
-						</Col>
-					))}
-				</Row>
-			</Container>
+				<Container>
+					<Row>
+						{this.state.images.map(image => (
+							<Col size="sm-2.5">
+								<Image
+									id={image.id}
+									key={image.key}
+									src={image.image}
+									alt={image.alt}
+									handleClickEvent={this.handleClickEvent}
+								/>
+							</Col>
+						))}
+					</Row>
+				</Container>
+			</>
 		);
 	}
 }
