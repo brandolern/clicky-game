@@ -9,7 +9,8 @@ class GameBoard extends Component {
 		images,
 		score: 0,
 		highScore: 0,
-		clickedArr: []
+		clickedArr: [],
+		userMessage: ""
 	};
 
 	shuffleImages(arr) {
@@ -32,24 +33,37 @@ class GameBoard extends Component {
 
 	handleClickEvent(event) {
 		const imageId = event.target.id;
-		console.log(this.state.clickedArr);
-
-		this.state.clickedArr.map(id => {
-			console.log(this);
-			if (id !== imageId) {
-				console.log(id);
-				this.setState({
-					clickedArr: this.state.clickedArr.concat([imageId]),
-					highScore: this.state.highScore + 1
-				});
-			} else {
-				this.setState({
-					score: 0,
-					clickedArr: []
-				});
-			}
+		if (this.state.clickedArr.length === 0) {
+			this.setState({
+				clickedArr: this.state.clickedArr.concat([imageId]),
+				score: this.state.score + 1,
+				highScore: this.state.highScore + 1,
+				userMessage: ""
+			});
+			console.log(this.state.highScore);
+			return this.shuffleImages(this.state.images);
+		}
+		const filterArr = this.state.clickedArr.filter(id => {
+			return id === imageId;
 		});
-		this.shuffleImages(this.state.images);
+
+		if (filterArr.length !== 0) {
+			this.setState({
+				score: 0,
+				clickedArr: [],
+				userMessage: "Sorry you lose!"
+			});
+			console.log(this.state.highScore);
+		} else {
+			this.setState({
+				clickedArr: this.state.clickedArr.concat([imageId]),
+				score: this.state.score + 1,
+				highScore: this.state.highScore + 1,
+				userMessage: "That's correct"
+			});
+			this.shuffleImages(this.state.images);
+			console.log(this.state.highScore);
+		}
 	}
 
 	render() {
@@ -70,3 +84,6 @@ class GameBoard extends Component {
 	}
 }
 export default GameBoard;
+export { score };
+export { highScore };
+export { userMessage };

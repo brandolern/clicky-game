@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col } from "../Grid";
 import UserMessage from "../UserMessage";
 import Scores from "../Scores";
+
 function Header(props) {
 	return (
 		<Row>
@@ -9,10 +10,10 @@ function Header(props) {
 				<h1 className="title">Clicky Office Game</h1>
 			</Col>
 			<Col size="sm-4">
-				<UserMessage userMessage="usermessage" />
+				<UserMessage userMessage={props.userMessage} />
 			</Col>
 			<Col size="sm-4">
-				<Scores score={props.score} highscore={props.highscore} />
+				<Scores score={props.score} highscore={props.highScore} />
 			</Col>
 		</Row>
 	);
