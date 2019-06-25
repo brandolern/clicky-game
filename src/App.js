@@ -11,8 +11,7 @@ class App extends Component {
 		score: 0,
 		highScore: 0,
 		clickedIds: [],
-		status:
-			"Try not to click on the same image twice, click an image to begin!",
+		status: "Click an image to begin, try not to click the same image twice!",
 		isCorrect: ""
 	};
 
@@ -50,7 +49,7 @@ class App extends Component {
 					highScore: this.state.score + 1
 				});
 			}
-			clickedIds.push(id);
+			if (this.state.score === this.state) clickedIds.push(id);
 			this.setState({
 				clickedIds: clickedIds,
 				score: this.state.score + 1,
