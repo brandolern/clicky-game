@@ -44,27 +44,28 @@ class App extends Component {
 				isCorrect: false
 			});
 		} else {
-			// if (this.state.score === 12) {
-			// 	this.setState({
-			// 		score: 0,
-			// 		status: "Apparently you like the office... because you won!",
-			// 		clickedIds: []
-			// 	});
-			// }
-
 			if (this.state.score === this.state.highScore) {
 				this.setState({
 					highScore: this.state.score + 1
 				});
 			}
-			clickedIds.push(id);
-			this.setState({
-				clickedIds: clickedIds,
-				score: this.state.score + 1,
-				status: "You guessed correctly!",
-				isCorrect: true
-			});
-			return this.shuffleImages(this.state.images);
+			if (this.state.score === 11) {
+				this.setState({
+					score: 0,
+					status: "Apparently you like the office... because you won!",
+					clickedIds: []
+				});
+				return;
+			} else {
+				clickedIds.push(id);
+				this.setState({
+					clickedIds: clickedIds,
+					score: this.state.score + 1,
+					status: "You guessed correctly!",
+					isCorrect: true
+				});
+				return this.shuffleImages(this.state.images);
+			}
 		}
 	};
 
