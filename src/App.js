@@ -44,12 +44,19 @@ class App extends Component {
 				isCorrect: false
 			});
 		} else {
+			// if (this.state.score === 12) {
+			// 	this.setState({
+			// 		score: 0,
+			// 		status: "Apparently you like the office... because you won!",
+			// 		clickedIds: []
+			// 	});
+			// }
+
 			if (this.state.score === this.state.highScore) {
 				this.setState({
 					highScore: this.state.score + 1
 				});
 			}
-			// if (this.state.score === this.state)
 			clickedIds.push(id);
 			this.setState({
 				clickedIds: clickedIds,
