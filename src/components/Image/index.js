@@ -12,6 +12,7 @@ function Image(props) {
 			break;
 		default:
 			border = "normalBorder";
+			break;
 	}
 
 	return (
