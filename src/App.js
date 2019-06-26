@@ -49,7 +49,8 @@ class App extends Component {
 					highScore: this.state.score + 1
 				});
 			}
-			if (this.state.score === this.state) clickedIds.push(id);
+			// if (this.state.score === this.state)
+			clickedIds.push(id);
 			this.setState({
 				clickedIds: clickedIds,
 				score: this.state.score + 1,
